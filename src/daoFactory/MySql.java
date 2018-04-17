@@ -20,7 +20,8 @@ public class MySql extends DaoFactory {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (Exception ex) {
-			System.err.println("Não foi possével salvar os dados! O Banco de dados não estão respondendo!");
+			System.err.println("Impossible de se connecter à la base de données");
+			System.err.println(ex);
 		}
 		return null;
 	}

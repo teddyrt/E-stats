@@ -17,7 +17,6 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - mysql-data
       - ./e_primelec.sql:/docker-entrypoint-initdb.d/dump.sql
     environment:
       MYSQL_ROOT_PASSWORD: root

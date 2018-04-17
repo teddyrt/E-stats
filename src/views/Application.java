@@ -2,14 +2,19 @@ package views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-public class Application extends JFrame {
+import controllers.UtilisateurController;
+import models.Utilisateur;
 
+public class Application extends JFrame {
+	
+	private final UtilisateurController uC = new UtilisateurController();
 	private static final long serialVersionUID = 1L;
 
 	public Application() {
@@ -88,5 +93,9 @@ public class Application extends JFrame {
 			}
 		});
 		this.setSize(1000, 600);
+		
+		List<Utilisateur> list_utilisateur = uC.tous_utilisateurs();
+		
+		System.out.println(list_utilisateur.get(0).getEmail());
 	}
 }
