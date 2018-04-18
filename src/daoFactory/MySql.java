@@ -11,6 +11,7 @@ public class MySql extends DaoFactory {
 	private static String driver = "com.mysql.jdbc.Driver";
 	private static String user = "root";
 	private static String password = "root";
+	
 
 	public Connection openConnection() {
 		try {

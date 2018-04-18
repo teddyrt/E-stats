@@ -1,5 +1,6 @@
 package views;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -8,13 +9,16 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 import controllers.UtilisateurController;
 import models.Utilisateur;
+import models.UtilisateurTableModel;
 
 public class Application extends JFrame {
 	
-	private final UtilisateurController uC = new UtilisateurController();
 	private static final long serialVersionUID = 1L;
 
 	public Application() {
@@ -77,7 +81,7 @@ public class Application extends JFrame {
 		/* clic sur le choix derouler du menu Clients */
 		derouler.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Voici la liste des clients : ");
+				afficherClient();
 			}
 		});
 		/* clic sur le choix client du menu Statistiques */
@@ -89,13 +93,29 @@ public class Application extends JFrame {
 		/* clic sur le choix produit du menu Statistiques */
 		produit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Voici la liste des produits : ");
+				System.out.println("Voici les statistiques clients : ");
 			}
 		});
+		
+		/* clic spour quitter l'application */
+		quitter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				quitter();
+			}
+		});
+		
 		this.setSize(1000, 600);
+	}
+	
+	public void afficherClient() {
+		System.out.println("Afficher clients");
+		UtilisateurPanel utilisateurPanel = new UtilisateurPanel();
 		
-		List<Utilisateur> list_utilisateur = uC.tous_utilisateurs();
-		
-		System.out.println(list_utilisateur.get(0).getEmail());
+		this.setContentPane(utilisateurPanel);
+		this.revalidate();
+	}
+	
+	public void quitter() {
+		System.exit(0);
 	}
 }
