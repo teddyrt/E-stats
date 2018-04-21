@@ -5,15 +5,15 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-public class UtilisateurTableModel extends AbstractTableModel {
-	
+public class CommandeTableModel extends AbstractTableModel {
+
 	private static final long serialVersionUID = 1L;
 
-	private String[] nomColonnes = { "Nom", "Prenom", "Email", "Civilite" };
-	private ArrayList<Utilisateur> listeUtilisateur;
+	private String[] nomColonnes = { "Date commande", "quantite", "prix" };
+	private ArrayList<Commande> listCommandes;
 
-	public UtilisateurTableModel(List<Utilisateur> p_listeUtilisateur) {
-		listeUtilisateur = (ArrayList<Utilisateur>) p_listeUtilisateur;
+	public CommandeTableModel(List<Commande> p_listeCommandes) {
+		listCommandes = (ArrayList<Commande>) p_listeCommandes;
 	}
 
 	@Override
@@ -24,30 +24,27 @@ public class UtilisateurTableModel extends AbstractTableModel {
 	@Override
 	public int getRowCount() {
 		int size;
-		if (listeUtilisateur == null) {
+		if (listCommandes == null) {
 			size = 0;
 		} else {
-			size = listeUtilisateur.size();
+			size = listCommandes.size();
 		}
 		return size;
 	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		Utilisateur u = listeUtilisateur.get(rowIndex);
+		Commande c = listCommandes.get(rowIndex);
 		Object value = null;
 		switch (columnIndex) {
 		case 0:
-			value = u.getNom();
+			value = c.getDate();
 			break;
 		case 1:
-			value = u.getPrenom();
+			value = c.getQuantite();
 			break;
 		case 2:
-			value = u.getEmail();
-			break;
-		case 3:
-			value = u.getCivilite();
+			value = c.getPrix();
 		}
 		return value;
 	}

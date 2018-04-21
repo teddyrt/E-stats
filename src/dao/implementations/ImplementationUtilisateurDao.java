@@ -12,20 +12,22 @@ import daoFactory.DaoFactory;
 import models.Utilisateur;
 
 public class ImplementationUtilisateurDao implements UtilisateurDao {
-	
-	private static final String TOUS_UTILISATEURS = "SELECT * FROM utilisateur";
 
-	public List<Utilisateur> tous_utilisateurs() throws SQLException {
+	private static final String TOUS_UTILISATEURS = "SELECT * FROM utilisateur";
+	private static final String NOMBRE_UTILISATEURS = "SELECT COUNT(*) AS nombre_utilisateurs FROM utilisateur";
+
+	@Override
+	public List<Utilisateur> tousUtilisateurs() throws SQLException {
 		// Récupération de la connexion à la base de données
 		Connection c = DaoFactory.getDatabase().openConnection();
 		PreparedStatement pstmt = c.prepareStatement(TOUS_UTILISATEURS);
 
-		List<Utilisateur> liste_utilisateurs = new ArrayList<Utilisateur>();
+		List<Utilisateur> listeUtilisateurs = new ArrayList<Utilisateur>();
 
 		ResultSet rset = pstmt.executeQuery();
 		while (rset.next()) {
 			Utilisateur utilisateur = new Utilisateur();
-			utilisateur.setId_utilisateur(rset.getInt("id_utilisateur"));
+			utilisateur.setIdUtilisateur(rset.getInt("id_utilisateur"));
 			utilisateur.setEmail(rset.getString("email"));
 			utilisateur.setCivilite(rset.getString("civilite"));
 			utilisateur.setPseudo(rset.getString("pseudo"));
@@ -35,12 +37,28 @@ public class ImplementationUtilisateurDao implements UtilisateurDao {
 			utilisateur.setTelmobile(rset.getString("telmobile"));
 			utilisateur.setId_adresse(rset.getInt("id_adresse"));
 			utilisateur.setRole(rset.getString("role"));
-			liste_utilisateurs.add(utilisateur);
+			listeUtilisateurs.add(utilisateur);
 		}
 
 		pstmt.close();
 		c.close();
 
-		return liste_utilisateurs;
+		return listeUtilisateurs;
 	}
+
+	@Override
+	public int nombreUtilisateurs() throws SQLException {
+		// Récupération de la connexion à la base de données
+		Connection c = DaoFactory.getDatabase().openConnection();
+		PreparedStatement pstmt = c.prepareStatement(NOMBRE_UTILISATEURS);
+		ResultSet rset = pstmt.executeQuery();
+		
+		rset.next();
+		int nombreUtilisateurs = rset.getInt("nombre_utilisateurs");
+		pstmt.close();
+		c.close();
+
+		return nombreUtilisateurs;
+	}
+
 }

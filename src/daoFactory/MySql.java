@@ -16,7 +16,8 @@ public class MySql extends DaoFactory {
 	public Connection openConnection() {
 		try {
 			Class.forName(driver).newInstance();
-			Connection connection = DriverManager.getConnection(url + database, user, password);
+			String databaseURL = url + database + "?useSSL=false";
+			Connection connection = DriverManager.getConnection(databaseURL, user, password);
 			return connection;
 		} catch (SQLException e) {
 			e.printStackTrace();

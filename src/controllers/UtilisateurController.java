@@ -10,12 +10,22 @@ public class UtilisateurController {
 
 	private ImplementationUtilisateurDao iUDao = new ImplementationUtilisateurDao();
 
-	public List<Utilisateur> tous_utilisateurs() {
+	public List<Utilisateur> tousUtilisateurs() {
 		try {
-			return iUDao.tous_utilisateurs();
+			return iUDao.tousUtilisateurs();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
+	
+	public int nombreUtilisateurs() {
+		try {
+			return iUDao.nombreUtilisateurs();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
 }
