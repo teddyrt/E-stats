@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le :  mar. 17 avr. 2018 à 20:15
+-- Généré le :  Dim 22 avr. 2018 à 18:01
 -- Version du serveur :  5.7.21
 -- Version de PHP :  7.2.4
 
@@ -21,6 +21,28 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `e_primelec`
 --
+
+DELIMITER $$
+--
+-- Procédures
+--
+CREATE DEFINER=`root`@`%` PROCEDURE `meilleurs_utilisateurs` ()  BEGIN
+    SELECT id_utilisateur, SUM(quantite) AS nombre_achats
+    FROM commande
+    GROUP BY id_utilisateur
+    ORDER BY nombre_achats
+    LIMIT 5;
+END$$
+
+CREATE DEFINER=`root`@`%` PROCEDURE `pires_utilisateurs` ()  BEGIN
+    SELECT id_utilisateur, SUM(quantite) AS nombre_achats
+    FROM commande
+    GROUP BY id_utilisateur
+    ORDER BY nombre_achats DESC
+    LIMIT 5;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 

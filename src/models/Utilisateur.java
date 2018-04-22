@@ -8,18 +8,21 @@ public class Utilisateur {
 	private String pseudo;
 	private String nom;
 	private String prenom;
-	private String mot_de_passe;
+	private String motDePasse;
 	private String telfixe;
 	private String telmobile;
-	private int id_adresse;
+	private int idAdresse;
 	private String role;
 
-	public int getId_utilisateur() {
+	// Attributs aggrégé
+	private int nombreAchats;
+	
+	public int getIdUtilisateur() {
 		return idUtilisateur;
 	}
 
-	public void setIdUtilisateur(int id_utilisateur) {
-		this.idUtilisateur = id_utilisateur;
+	public void setIdUtilisateur(int idUtilisateur) {
+		this.idUtilisateur = idUtilisateur;
 	}
 
 	public String getEmail() {
@@ -62,12 +65,12 @@ public class Utilisateur {
 		this.prenom = prenom;
 	}
 
-	public String getMot_de_passe() {
-		return mot_de_passe;
+	public String getMotDePasse() {
+		return motDePasse;
 	}
 
-	public void setMot_de_passe(String mot_de_passe) {
-		this.mot_de_passe = mot_de_passe;
+	public void setMotDePasse(String motDePasse) {
+		this.motDePasse = motDePasse;
 	}
 
 	public String getTelfixe() {
@@ -86,12 +89,12 @@ public class Utilisateur {
 		this.telmobile = telmobile;
 	}
 
-	public int getId_adresse() {
-		return id_adresse;
+	public int getIdAdresse() {
+		return idAdresse;
 	}
 
-	public void setId_adresse(int id_adresse) {
-		this.id_adresse = id_adresse;
+	public void setIdAdresse(int idAdresse) {
+		this.idAdresse = idAdresse;
 	}
 
 	public String getRole() {
@@ -100,6 +103,14 @@ public class Utilisateur {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public int getNombreAchats() {
+		return nombreAchats;
+	}
+
+	public void setNombreAchats(int nombreAchats) {
+		this.nombreAchats = nombreAchats;
 	}
 
 }

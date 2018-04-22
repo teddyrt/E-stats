@@ -28,4 +28,22 @@ public class UtilisateurController {
 		}
 	}
 	
+	public List<Utilisateur> meilleursUtilisateurs() {
+		try {
+			return iUDao.meilleursUtilisateurs();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public List<Utilisateur> piresUtilisateurs() {
+		try {
+			return iUDao.piresUtilisateurs();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }

@@ -30,8 +30,8 @@ public class Application extends JFrame {
 		JMenuItem listerCatalogue = new JMenuItem("Lister");
 		JMenuItem listerCommande = new JMenuItem("Lister");
 		JMenuItem listerClient = new JMenuItem("Lister");
-		JMenuItem client = new JMenuItem("Client");
-		JMenuItem produit = new JMenuItem("Produit");
+		JMenuItem statClient = new JMenuItem("Client");
+		JMenuItem statProduit = new JMenuItem("Produit");
 
 		/* Ajouter les choix au menu */
 		menu1Acceuil.add(info);
@@ -39,8 +39,8 @@ public class Application extends JFrame {
 		menuCatalogue.add(listerCatalogue);
 		menuCommande.add(listerCommande);
 		menuClient.add(listerClient);
-		menuStat.add(client);
-		menuStat.add(produit);
+		menuStat.add(statClient);
+		menuStat.add(statProduit);
 		/* Ajouter les menu sur la bar de menu */
 		menuBar.add(menu1Acceuil);
 		menuBar.add(menuCatalogue);
@@ -66,25 +66,25 @@ public class Application extends JFrame {
 		/* clic sur le choix afficher du menu Commandes */
 		listerCommande.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				afficherCommande();
+				afficherCommandes();
 			}
 		});
 		/* clic sur le choix derouler du menu Clients */
 		listerClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				afficherClient();
+				afficherClients();
 			}
 		});
 		/* clic sur le choix client du menu Statistiques */
-		client.addActionListener(new ActionListener() {
+		statClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Voici la liste des clients : ");
+				afficherStatsClients();
 			}
 		});
 		/* clic sur le choix produit du menu Statistiques */
-		produit.addActionListener(new ActionListener() {
+		statProduit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Voici les statistiques clients : ");
+				afficherStatsProduits();
 			}
 		});
 		
@@ -115,14 +115,28 @@ public class Application extends JFrame {
 		this.revalidate();
 	}
 	
-	public void afficherCommande() {
+	public void afficherCommandes() {
 		CommandePanel commandePanel = new CommandePanel();
 		
 		this.setContentPane(commandePanel);
 		this.revalidate();
 	}
 	
-	public void afficherClient() {
+	public void afficherClients() {
+		UtilisateurPanel utilisateurPanel = new UtilisateurPanel();
+		
+		this.setContentPane(utilisateurPanel);
+		this.revalidate();
+	}
+	
+	public void afficherStatsClients() {
+		StatsClientPanel statsClientPanel = new StatsClientPanel();
+		
+		this.setContentPane(statsClientPanel);
+		this.revalidate();
+	}
+	
+	public void afficherStatsProduits() {
 		UtilisateurPanel utilisateurPanel = new UtilisateurPanel();
 		
 		this.setContentPane(utilisateurPanel);
@@ -132,4 +146,5 @@ public class Application extends JFrame {
 	public void quitter() {
 		System.exit(0);
 	}
+
 }

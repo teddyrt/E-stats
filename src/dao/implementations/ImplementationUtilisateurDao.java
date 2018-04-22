@@ -15,6 +15,8 @@ public class ImplementationUtilisateurDao implements UtilisateurDao {
 
 	private static final String TOUS_UTILISATEURS = "SELECT * FROM utilisateur";
 	private static final String NOMBRE_UTILISATEURS = "SELECT COUNT(*) AS nombre_utilisateurs FROM utilisateur";
+	private static final String MEILLEURS_UTILISATEURS = "CALL meilleurs_utilisateurs";
+	private static final String PIRES_UTILISATEURS = "CALL pires_utilisateurs";
 
 	@Override
 	public List<Utilisateur> tousUtilisateurs() throws SQLException {
@@ -33,9 +35,9 @@ public class ImplementationUtilisateurDao implements UtilisateurDao {
 			utilisateur.setPseudo(rset.getString("pseudo"));
 			utilisateur.setNom(rset.getString("nom"));
 			utilisateur.setPrenom(rset.getString("prenom"));
-			utilisateur.setMot_de_passe(rset.getString("mot_de_passe"));
+			utilisateur.setMotDePasse(rset.getString("mot_de_passe"));
 			utilisateur.setTelmobile(rset.getString("telmobile"));
-			utilisateur.setId_adresse(rset.getInt("id_adresse"));
+			utilisateur.setIdAdresse(rset.getInt("id_adresse"));
 			utilisateur.setRole(rset.getString("role"));
 			listeUtilisateurs.add(utilisateur);
 		}
@@ -52,13 +54,51 @@ public class ImplementationUtilisateurDao implements UtilisateurDao {
 		Connection c = DaoFactory.getDatabase().openConnection();
 		PreparedStatement pstmt = c.prepareStatement(NOMBRE_UTILISATEURS);
 		ResultSet rset = pstmt.executeQuery();
-		
+
 		rset.next();
 		int nombreUtilisateurs = rset.getInt("nombre_utilisateurs");
 		pstmt.close();
 		c.close();
 
 		return nombreUtilisateurs;
+	}
+
+	@Override
+	public List<Utilisateur> meilleursUtilisateurs() throws SQLException {
+		// Récupération de la connexion à la base de données
+		Connection c = DaoFactory.getDatabase().openConnection();
+		PreparedStatement pstmt = c.prepareStatement(MEILLEURS_UTILISATEURS);
+		ResultSet rset = pstmt.executeQuery();
+
+		// Récupération des meilleurs utilisateurs
+		while (rset.next()) {
+			System.out.println(rset.getInt("id_utilisateur"));
+			System.out.println(rset.getInt("nombre_achats"));
+		}
+
+		pstmt.close();
+		c.close();
+
+		return null;
+	}
+
+	@Override
+	public List<Utilisateur> piresUtilisateurs() throws SQLException {
+		// Récupération de la connexion à la base de données
+		Connection c = DaoFactory.getDatabase().openConnection();
+		PreparedStatement pstmt = c.prepareStatement(PIRES_UTILISATEURS);
+		ResultSet rset = pstmt.executeQuery();
+
+		// Récupération des pires utilisateurs
+		// Récupération des meilleurs utilisateurs
+		while (rset.next()) {
+			System.out.println(rset.getInt("id_utilisateur"));
+			System.out.println(rset.getInt("nombre_achats"));
+		}
+
+		pstmt.close();
+		c.close();
+		return null;
 	}
 
 }

@@ -20,6 +20,8 @@ public class InfoPanel extends JPanel {
 	private final ArticleController aC = new ArticleController();
 	
 	public InfoPanel() {
+		uC.meilleursUtilisateurs();
+		
 		int nombreUtilisateurs = uC.nombreUtilisateurs();
 		int nombreCommandes = cC.nombreCommandes();
 		int nombreArticles = aC.nombreArticles();
