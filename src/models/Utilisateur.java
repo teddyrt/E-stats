@@ -16,7 +16,8 @@ public class Utilisateur {
 
 	// Attributs aggrégé
 	private int nombreAchats;
-	
+	private float totalPrixAchat;
+
 	public int getIdUtilisateur() {
 		return idUtilisateur;
 	}
@@ -111,6 +112,14 @@ public class Utilisateur {
 
 	public void setNombreAchats(int nombreAchats) {
 		this.nombreAchats = nombreAchats;
+	}
+
+	public float getTotalPrixAchat() {
+		return totalPrixAchat;
+	}
+
+	public void setTotalPrixAchat(float totalPrixAchat) {
+		this.totalPrixAchat = totalPrixAchat;
 	}
 
 }

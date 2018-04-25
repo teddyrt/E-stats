@@ -137,9 +137,9 @@ public class Application extends JFrame {
 	}
 	
 	public void afficherStatsProduits() {
-		UtilisateurPanel utilisateurPanel = new UtilisateurPanel();
+		StatsProduitPanel statsProduitPanel = new StatsProduitPanel();
 		
-		this.setContentPane(utilisateurPanel);
+		this.setContentPane(statsProduitPanel);
 		this.revalidate();
 	}
 	

@@ -28,4 +28,22 @@ public class ArticleController {
 		}
 	}
 
+	public List<Article> meilleursVentes() {
+		try {
+			return iADao.meilleursVentes();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public List<Article> piresVentes() {
+		try {
+			return iADao.piresVentes();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }

@@ -18,7 +18,7 @@ public class UtilisateurController {
 			return null;
 		}
 	}
-	
+
 	public int nombreUtilisateurs() {
 		try {
 			return iUDao.nombreUtilisateurs();
@@ -27,19 +27,28 @@ public class UtilisateurController {
 			return 0;
 		}
 	}
-	
-	public List<Utilisateur> meilleursUtilisateurs() {
+
+	public List<Utilisateur> meilleursAcheteurs() {
 		try {
-			return iUDao.meilleursUtilisateurs();
+			return iUDao.meilleursAcheteurs();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
-	public List<Utilisateur> piresUtilisateurs() {
+
+	public List<Utilisateur> piresAcheteurs() {
 		try {
-			return iUDao.piresUtilisateurs();
+			return iUDao.piresAcheteurs();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public Utilisateur meilleurPayeur() {
+		try {
+			return iUDao.meilleurPayeur();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;

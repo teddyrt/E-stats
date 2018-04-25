@@ -8,7 +8,6 @@ public class Commande {
 	private float prix;
 	private String type;
 	private int idUtilisateur;
-	private String idObjets;
 
 	public int getIdCommande() {
 		return idCommande;
@@ -56,14 +55,6 @@ public class Commande {
 
 	public void setIdUtilisateur(int idUtilisateur) {
 		this.idUtilisateur = idUtilisateur;
-	}
-
-	public String getIdObjets() {
-		return idObjets;
-	}
-
-	public void setIdObjets(String idObjets) {
-		this.idObjets = idObjets;
 	}
 
 }

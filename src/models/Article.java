@@ -10,6 +10,9 @@ public class Article {
 	private String marque;
 	private String photo;
 
+	// Attributs aggrégé
+    private int nombreVentes;
+    
 	public String getDesignation() {
 		return designation;
 	}
@@ -64,6 +67,14 @@ public class Article {
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+
+	public int getNombreVentes() {
+		return nombreVentes;
+	}
+
+	public void setNombreVentes(int nombreVentes) {
+		this.nombreVentes = nombreVentes;
 	}
 
 }

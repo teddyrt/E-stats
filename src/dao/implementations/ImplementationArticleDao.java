@@ -10,13 +10,14 @@ import java.util.List;
 import dao.interfaces.ArticleDao;
 import daoFactory.DaoFactory;
 import models.Article;
+import models.Utilisateur;
 
 public class ImplementationArticleDao implements ArticleDao {
 	
 	private static final String TOUS_ARTICLES= "SELECT * FROM objet";
 	private static final String NOMBRE_ARTICLES = "SELECT COUNT(*) AS nombre_articles FROM objet";
-	private static final String MEILLEURS_VENTES = "SELECT * FROM objet";
-	private static final String PIRES_VENTES = "SELECT * FROM objet";
+	private static final String MEILLEURS_VENTES = "CALL meilleurs_ventes";
+	private static final String PIRES_VENTES = "CALL pires_ventes";
 	
 	@Override
 	public List<Article> tousArticles() throws SQLException {
@@ -65,14 +66,28 @@ public class ImplementationArticleDao implements ArticleDao {
 		// Récupération de la connexion à la base de données
 		Connection c = DaoFactory.getDatabase().openConnection();
 		PreparedStatement pstmt = c.prepareStatement(MEILLEURS_VENTES);
-		ResultSet rset = pstmt.executeQuery();
+
+		List<Article> listeArticles = new ArrayList<Article>();
 		
-		rset.next();
 		// Récupération des meilleurs ventes
+		ResultSet rset = pstmt.executeQuery();
+		while (rset.next()) {
+			Article article = new Article();
+			article.setDesignation(rset.getString("designation"));
+			article.setDescription(rset.getString("description"));
+			article.setPrix(rset.getFloat("prix"));
+			article.setQuantite(rset.getInt("quantite"));
+			article.setCouleur(rset.getString("couleur"));
+			article.setMarque(rset.getString("marque"));
+			article.setPhoto(rset.getString("photo"));
+			article.setNombreVentes(rset.getInt("nombre_ventes"));
+			listeArticles.add(article);
+		}
+		
 		pstmt.close();
 		c.close();
 
-		return null;
+		return listeArticles;
 	}
 
 	@Override
@@ -80,14 +95,28 @@ public class ImplementationArticleDao implements ArticleDao {
 		// Récupération de la connexion à la base de données
 		Connection c = DaoFactory.getDatabase().openConnection();
 		PreparedStatement pstmt = c.prepareStatement(PIRES_VENTES);
-		ResultSet rset = pstmt.executeQuery();
+
+		List<Article> listeArticles = new ArrayList<Article>();
 		
-		rset.next();
 		// Récupération des pires ventes
+		ResultSet rset = pstmt.executeQuery();
+		while (rset.next()) {
+			Article article = new Article();
+			article.setDesignation(rset.getString("designation"));
+			article.setDescription(rset.getString("description"));
+			article.setPrix(rset.getFloat("prix"));
+			article.setQuantite(rset.getInt("quantite"));
+			article.setCouleur(rset.getString("couleur"));
+			article.setMarque(rset.getString("marque"));
+			article.setPhoto(rset.getString("photo"));
+			article.setNombreVentes(rset.getInt("nombre_ventes"));
+			listeArticles.add(article);
+		}
+
 		pstmt.close();
 		c.close();
 
-		return null;
+		return listeArticles;
 	}
 
 }

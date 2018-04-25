@@ -33,7 +33,6 @@ public class ImplementationCommandeDao implements CommandeDao {
 			commande.setPrix(rset.getFloat("prix_total"));
 			commande.setType(rset.getString("type"));
 			commande.setIdUtilisateur(rset.getInt("id_utilisateur"));
-			commande.setIdObjets(rset.getString("id_objets"));
 			liste_commandes.add(commande);
 		}
 

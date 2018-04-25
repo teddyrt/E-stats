@@ -1,9 +1,10 @@
 package views;
 
-import java.awt.BorderLayout;
 import java.util.List;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -14,29 +15,38 @@ import models.Utilisateur;
 import models.UtilisateurAchatTableModel;
 
 public class StatsClientPanel extends JPanel {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private final UtilisateurController uC = new UtilisateurController();
-	
+
 	public StatsClientPanel() {
-		// Le client qui a le plus de références
-		
-		// Les client qui ont dépensés le plus
-		List<Utilisateur> meilleursUtilisateurs = uC.meilleursUtilisateurs();
-		JTable tableMeilleursUtilisateurs = new JTable(new UtilisateurAchatTableModel(meilleursUtilisateurs));
-		JScrollPane spMU = new JScrollPane(tableMeilleursUtilisateurs);
-		
-		// Le nombre d'achat par utilisateur
-		
-		// Le nombre de location par utilisateur
-		
-		
-		this.setLayout(new BorderLayout());
-		this.setBorder(new EmptyBorder(50, 20, 20, 20));
-		
+		// Les client qui ont acheté le plus avec leurs nombres d'achats
+		JLabel meilleursAcheteursLabel = new JLabel("Voici les 5 utilisateurs qui ont le plus achetés");
+		List<Utilisateur> meilleursAcheteurs = uC.meilleursAcheteurs();
+		JTable tableMeilleursAcheteurs = new JTable(new UtilisateurAchatTableModel(meilleursAcheteurs));
+		JScrollPane spMU = new JScrollPane(tableMeilleursAcheteurs);
 		spMU.setBorder(BorderFactory.createEmptyBorder());
-		this.add(spMU);// add table in panel using add() method
+
+		// Les client qui ont acheté le plus avec leurs nombres d'achats
+		JLabel piresAcheteursLabel = new JLabel("Voici les 5 utilisateurs qui ont le moins achetés");
+		List<Utilisateur> piresAcheteurs = uC.piresAcheteurs();
+		JTable tablePiresAcheteurs = new JTable(new UtilisateurAchatTableModel(piresAcheteurs));
+		JScrollPane spPU = new JScrollPane(tablePiresAcheteurs);
+		spPU.setBorder(BorderFactory.createEmptyBorder());
+		
+		// Le client qui à le plus dépensé
+		Utilisateur meilleurPayeur = uC.meilleurPayeur();
+		JLabel meilleurPayeurLabel = new JLabel("Le meilleur payeur est " + meilleurPayeur.getNom() + " " + meilleurPayeur.getPrenom() + " avec " + meilleurPayeur.getTotalPrixAchat() + " € dépensé");
+
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		this.setBorder(new EmptyBorder(100, 50, 150, 50));
+		
+		this.add(meilleursAcheteursLabel);
+		this.add(spMU);
+		this.add(piresAcheteursLabel);
+		this.add(spPU);
+		this.add(meilleurPayeurLabel);
 	}
 
 }
