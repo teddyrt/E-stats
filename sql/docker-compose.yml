@@ -15,7 +15,7 @@ services:
     image: mysql:latest
     container_name: mysql-container
     ports:
-      - 3306:3306
+      - 8889:3306
     volumes:
       - ./e_primelec.sql:/docker-entrypoint-initdb.d/dump.sql
     environment:

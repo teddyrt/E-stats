@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class MySql extends DaoFactory {
 
-	private static String url = "jdbc:mysql://127.0.0.1:3306/";
+	private static String url = "jdbc:mysql://127.0.0.1:8889/";
 	private static String database = "e_primelec";
 	private static String driver = "com.mysql.jdbc.Driver";
 	private static String user = "root";
